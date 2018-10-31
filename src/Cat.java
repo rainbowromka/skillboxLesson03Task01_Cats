@@ -7,14 +7,28 @@ public class Cat
     private Double minWeight;
     private Double maxWeight;
 
+    private static Integer count = 0;
+
+
     public Cat()
     {
+        count++;
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         minWeight = 1000.0;
         maxWeight = 9000.0;
 
     }
+
+//    Создать в классе Cat ещё один конструктор так, чтобы массу кошки можно было задавать при создании кошки, и создать в главном классе метод генерации кошки, как описано в видеоуроке.
+    public Cat(Double weight) {
+        this.weight = weight;
+        originWeight = weight;
+        minWeight = 100.0;
+        maxWeight = 9000.0;
+    }
+
+
 
     public void meow()
     {
@@ -46,7 +60,8 @@ public class Cat
 
 //- Создать в классе Cat метод “сходить в туалет”, который будет уменьшать вес кошки и что-­нибудь печатать.
     public void goTouliet() {
-        if (weight < originWeight) {
+        // если вес кота меньше первоначального или равен, скорее всего коту ходить нечем, может он уже умер.
+        if (weight <= originWeight) {
             System.out.println("I do not want\n");
         } else {
             weight = weight - 1;
@@ -54,13 +69,19 @@ public class Cat
         }
     }
 
+    public void setWeight(Double weight) {
+        this.weight = weight;
+        originWeight = weight;
+    }
 
     public String getStatus()
     {
         if(weight < minWeight) {
+            count --;
             return "Dead";
         }
         else if(weight > maxWeight) {
+            count--;
             return "Exploded";
         }
         else if(weight > originWeight) {
@@ -70,4 +91,22 @@ public class Cat
             return "Playing";
         }
     }
+
+    public static Integer getCount() {
+        return count;
+    }
+
+
+    public Cat makeTwin(){
+        Cat catTwin = new Cat(this.weight);
+        catTwin.originWeight = this.originWeight;
+        catTwin.minWeight = this.minWeight;
+        catTwin.maxWeight = this.maxWeight;
+        return catTwin;
+    }
+
+    public static Cat makeTwin(Cat ownerCat) {
+        return ownerCat.makeTwin();
+    }
+
 }
