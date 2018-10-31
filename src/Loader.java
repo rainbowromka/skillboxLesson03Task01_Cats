@@ -45,8 +45,8 @@ public class Loader
         }
 
         System.out.println(murzik.getStatus());
-
-
+        System.out.println(vaska.getFoodWheigh());
+        vaska.goTouliet();
 
 
     }

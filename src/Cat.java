@@ -37,6 +37,24 @@ public class Cat
         return weight;
     }
 
+//- Создать в классе Cat метод, который будет возвращать массу съеденной еды.
+
+    public Double getFoodWheigh() {
+        Double result = weight - originWeight;
+        return (result < 0) ? 0 : result;
+    }
+
+//- Создать в классе Cat метод “сходить в туалет”, который будет уменьшать вес кошки и что-­нибудь печатать.
+    public void goTouliet() {
+        if (weight < originWeight) {
+            System.out.println("I do not want\n");
+        } else {
+            weight = weight - 1;
+            System.out.println("Upss!!!");
+        }
+    }
+
+
     public String getStatus()
     {
         if(weight < minWeight) {
